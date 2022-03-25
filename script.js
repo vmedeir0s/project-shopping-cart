@@ -46,6 +46,12 @@ const adicionaItemCarrinho = (item) => {
   positionCar.appendChild(item);
 };
 
+const extrairPrecos = () => {
+  const arrayItens = document.querySelectorAll('.cart__item');
+  arrayItens.forEach((item) => console.log(item));
+  console.log(arrayItens[0].innerText);
+};
+
 const eventButton = async (event) => {
   const elementoPai = event.target.parentElement;
   const valueSku = getSkuFromProductItem(elementoPai);
@@ -57,6 +63,7 @@ const eventButton = async (event) => {
     salePrice: price,
   };
   adicionaItemCarrinho(createCartItemElement(objeto));
+  saveCartItems();
 };
 
 const getProducts = async () => {
@@ -74,6 +81,15 @@ const getProducts = async () => {
   });
 };
 
+const setEventInLi = () => {
+  const arrayLi = document.querySelectorAll('.cart__item');
+  arrayLi.forEach((element) => {
+    element.addEventListener('click', cartItemClickListener);
+  });
+};
+
 window.onload = () => { 
    getProducts();
+   getSavedCartItems();
+   setEventInLi();
 };
