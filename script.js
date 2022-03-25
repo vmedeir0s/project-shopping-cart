@@ -30,6 +30,7 @@ function getSkuFromProductItem(item) {
 
 function cartItemClickListener(event) {
   // coloque seu código aqui
+  event.target.remove();
 }
 
 function createCartItemElement({ sku, name, salePrice }) {
@@ -40,4 +41,39 @@ function createCartItemElement({ sku, name, salePrice }) {
   return li;
 }
 
-window.onload = () => { };
+const adicionaItemCarrinho = (item) => {
+  const positionCar = document.querySelector('.cart__items');
+  positionCar.appendChild(item);
+};
+
+const eventButton = async (event) => {
+  const elementoPai = event.target.parentElement;
+  const valueSku = getSkuFromProductItem(elementoPai);
+  const itemBruto = await fetchItem(valueSku);
+  const { id, title, price } = itemBruto;
+  const objeto = {
+    sku: id,
+    name: title,
+    salePrice: price,
+  };
+  adicionaItemCarrinho(createCartItemElement(objeto));
+};
+
+const getProducts = async () => {
+  const results = await fetchProducts('computador');
+  const positionSection = document.querySelector('.items');
+  results.forEach((element) => {
+    const objeto = {
+      sku: element.id,
+      name: element.title,
+      image: element.thumbnail,
+    };
+    const result = createProductItemElement(objeto);
+    result.addEventListener('click', eventButton);
+    positionSection.appendChild(result); 
+  });
+};
+
+window.onload = () => { 
+   getProducts();
+};
