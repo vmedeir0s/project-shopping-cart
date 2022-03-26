@@ -31,6 +31,7 @@ function getSkuFromProductItem(item) {
 function cartItemClickListener(event) {
   // coloque seu código aqui
   event.target.remove();
+  saveCartItems();
 }
 
 function createCartItemElement({ sku, name, salePrice }) {
@@ -41,9 +42,10 @@ function createCartItemElement({ sku, name, salePrice }) {
   return li;
 }
 
-const adicionaItemCarrinho = (item) => {
+const adicionaItemCarrinho = async (item) => {
   const positionCar = document.querySelector('.cart__items');
   positionCar.appendChild(item);
+  const positionCarValue = document.querySelector('.cart_value');
 };
 
 const extrairPrecos = () => {
@@ -69,7 +71,7 @@ const eventButton = async (event) => {
 const getProducts = async () => {
   const results = await fetchProducts('computador');
   const positionSection = document.querySelector('.items');
-  results.forEach((element) => {
+  results.results.forEach((element) => {
     const objeto = {
       sku: element.id,
       name: element.title,
