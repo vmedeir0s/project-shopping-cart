@@ -45,14 +45,14 @@ function createCartItemElement({ sku, name, salePrice }) {
 const adicionaItemCarrinho = async (item) => {
   const positionCar = document.querySelector('.cart__items');
   positionCar.appendChild(item);
-  const positionCarValue = document.querySelector('.cart_value');
+  // const positionCarValue = document.querySelector('.cart_value');
 };
 
-const extrairPrecos = () => {
-  const arrayItens = document.querySelectorAll('.cart__item');
-  arrayItens.forEach((item) => console.log(item));
-  console.log(arrayItens[0].innerText);
-};
+// const extrairPrecos = () => {
+//   const arrayItens = document.querySelectorAll('.cart__item');
+//   arrayItens.forEach((item) => console.log(item));
+//   console.log(arrayItens[0].innerText);
+// };
 
 const eventButton = async (event) => {
   const elementoPai = event.target.parentElement;
