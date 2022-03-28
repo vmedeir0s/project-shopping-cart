@@ -5,7 +5,7 @@ const computadorSearch = require('../mocks/search');
 
 describe('1 - Teste a função fecthProducts', () => {
   // implemente seus testes aqui
-  test('Teste se fetchProducts é uma função', ()=> {
+  test('Teste se fetchProducts é uma função', () => {
     expect(typeof fetchProducts).toBe('function');
   });
 
